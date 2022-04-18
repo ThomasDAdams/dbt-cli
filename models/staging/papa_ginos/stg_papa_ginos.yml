@@ -1,0 +1,167 @@
+version: 2
+
+models:
+  # Coupons
+  - name: stg_papa_ginos__coupons
+    columns:
+      - name: rpt_id
+        tests:
+          - unique
+          - not_null
+      - name: loc_id
+        tests:
+          - not_null
+      - name: brnd_nm
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['PG', 'DA']
+      - name: init_nm
+      - name: ofr_nm
+      - name: dscnt_cd
+        tests:
+          - not_null
+      - name: fisc_dt
+        tests:
+          - not_null
+      - name: tran_cnt
+        tests:
+          - not_null
+      - name: tot_net_sls_amt
+        tests:
+          - not_null
+      - name: tot_extd_cst_amt
+        tests:
+          - not_null
+      - name: tot_net_margin
+        tests:
+          - not_null
+      - name: extrct_dt
+        tests:
+          - not_null
+     
+  # Franchise Corp
+  - name: stg_papa_ginos__franchisecorp
+    columns:
+      - name: loc_id
+        tests:
+          - not_null
+          - unique
+      - name: restaurant_nm
+        tests:
+          - not_null
+      - name: vp_ops
+        tests:
+          - not_null
+      - name: area_manager
+        tests:
+          - not_null
+      - name: catering_specialist
+      - name: restaurant_phone
+      - name: address
+        tests:
+          - not_null
+          - unique
+      - name: city_nm
+      - name: state_cd
+        tests:
+          - not_null
+      - name: zip_cd
+        tests:
+          - not_null
+      - name: store_type
+      - name: general_manager
+        tests:
+          - not_null
+      - name: delivery
+      - name: special
+      - name: msa_cd
+      - name: dma_cd
+      - name: market
+      - name: tier
+      - name: menuboard_size
+      - name: text_program
+        tests:
+          - not_null
+      - name: traditional_menuboard_setup
+        tests:
+          - not_null
+      - name: mall_location
+        tests:
+          - not_null
+      - name: franchise_location
+        tests:
+          - not_null
+      - name: fountain_removal_bottles_only
+      - name: beer_wine
+        tests:
+          - not_null
+      - name: online_ordering
+        tests:
+          - not_null
+      - name: door_dash
+      - name: fresh_bread_distributor
+
+  # Groups
+  - name: stg_papa_ginos__groups
+    columns:
+      - name: surr_key
+        tests:
+          - not_null
+          - unique
+      - name: loc_id
+        tests:
+          - not_null
+      - name: loc_grp_nm
+      - name: loc_grp_val
+      - name: extrct_dt
+        tests:
+          - not_null
+
+  # Locations
+  - name: stg_papa_ginos__locations
+    columns:
+      - name: loc_id
+        tests:
+          - not_null
+      - name: loc_nm
+        tests:
+          - not_null
+      - name: loc_sts_cd
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Open', 'Closed']
+      - name: chain_cd
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['PG', 'DA']
+      - name: rstnt_grp_nm
+      - name: dma_cd
+        tests:
+          - not_null
+      - name: adi_nm
+      - name: address
+        tests:
+          - not_null
+      - name: city_nm
+        tests:
+          - not_null
+      - name: state_cd
+        tests:
+          - not_null
+      - name: zip_cd
+        tests:
+          - not_null
+      - name: lon_val
+        tests:
+          - not_null
+      - name: lat_val
+        tests:
+          - not_null
+      - name: re_type_desc
+      - name: catr_rgn_nm
+      - name: extrct_dt
+        tests:
+          - not_null

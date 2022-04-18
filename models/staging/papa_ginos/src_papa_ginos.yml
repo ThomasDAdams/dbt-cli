@@ -1,0 +1,198 @@
+version: 2
+
+sources:
+  - name: raw-papa-ginos
+    database: engage-media-raw
+    schema: PapaGinos
+    description: A replica of the bigquery database used to power papa ginos analytics
+    # Add tags to this source
+    tags:
+      - papa_ginos
+      - external
+    tables:
+      # Location coupon table
+      - name: loc-coupon-extract
+        description: This table is provided via Papa Ginos and is a record of all their coupon sales
+        freshness: # make this a little more strict
+          warn_after: {count: 36, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: EXTRCT_DT
+        columns:
+          - name: RPT_ID
+            description: Will be the Primary key of the table after we take the last record provided
+            tests:
+              - not_null
+          - name: LOC_ID
+            description: Location ID of the restaurant
+            tests:
+              - not_null
+          - name: BRND_NM
+            description: Brand name
+            tests:
+              - not_null
+          - name: INIT_NM
+            description: Initial name
+          - name: OFR_NM
+            description: OFR name
+          - name: DSCNT_CD
+            description: Discount code
+            tests:
+              - not_null
+          - name: FISC_DT
+            description: FISC date
+            tests:
+              - not_null
+          - name: TRAN_CNT
+            description: Transaction count
+          - name: TOT_NET_SLS_AMT
+            description: Total net sales amount
+          - name: TOT_EXTD_CST_AMT
+            description: Total extd cst amount
+          - name: TOT_NET_MARGIN
+            description: Total net margin
+          - name: EXTRCT_DT
+            description: When the data was loaded into BigQuery
+            tests:
+              - not_null
+
+      # Location table
+      - name: loc-extract
+        description: This table is provided via Papa Ginos and is a record of all their locations
+        freshness: # make this a little more strict
+          warn_after: {count: 36, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: EXTRCT_DT
+
+        columns:
+          - name: LOC_ID
+            description: Will be the Primary key of the table after we take the last record provided
+            tests:
+              - not_null
+          - name: LOC_NM
+            description: Location name
+            tests:
+              - not_null
+          - name: LOC_STS_CD
+            description: Location sts code
+          - name: CHAIN_CD
+            description: Chain code
+          - name: RSTNT_GRP_NM
+            description: Restraurant group name
+          - name: DMA_CD
+            description: Designated market area
+          - name: ADI_NM
+            description: ADI name
+          - name: ADDR_LN_1_TXT
+            description: Address line 1
+          - name: CTY_NM
+            description: City name
+          - name: ST_CD
+            description: State name
+          - name: ZIP_CD
+            description: Zip-code
+          - name: LON_VAL
+            description: Longitude value
+          - name: LAT_VAL
+            description: Latitude value
+          - name: RE_TYP_DESC
+            description: Restraurant type description
+          - name: CATR_RGN_NM
+            description: Category region name
+          - name: EXTRCT_DT
+            description: When the data was loaded into BigQuery
+            tests:
+              - not_null
+
+      # Location group table
+      - name: loc-grp-extract
+        description: This table is provided via Papa Ginos and is a record of all their groups
+        freshness: # make this a little more strict
+          warn_after: {count: 36, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: EXTRCT_DT
+
+        columns:
+          - name: LOC_ID
+            description: Will be the Primary key of the table after we take the last record provided
+            tests:
+              - not_null
+          - name: LOC_GRP_NM
+            description: Location group name
+            tests:
+              - not_null
+          - name: LOC_GRP_VAL
+            description: Location group value
+          - name: EXTRCT_DT
+            description: When the data was loaded into BigQuery
+            tests:
+              - not_null
+
+      # Location franchise corp
+      - name: loc-franchisecorp-extract
+        description: This table is provided via Papa Ginos and is a record of all their franchise corps
+        freshness: # make this a little more strict
+          warn_after: {count: 36, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: EXTRCT_DT
+
+        columns:
+          - name: RESTAURANT
+            description: Will be the Primary key of the table after we take the last record provided
+            tests:
+              - not_null
+          - name: RESTAURANT_NAME
+            description: Restaurant name
+            tests:
+              - not_null
+          - name: VP_OPS
+            description: VP of operations
+          - name: AREA_MANAGER
+            description: Area manager name
+          - name: CATERING_SPECIALIST
+            description: Catering specialist
+          - name: RESTAURANT_PHONE
+            description: Restaurant phone number
+          - name: ADDRESS
+            description: Address
+          - name: CITY
+            description: City name
+          - name: STATE
+            description: State name
+          - name: ZIP_CODE
+            description: Zip-code
+          - name: STORE_TYPE
+            description: Store type
+          - name: GENERAL_MANAGER
+            description: General manager name
+          - name: DELIVERY
+            description: Delivery
+          - name: SPECIAL
+            description: Special
+          - name: MSA
+            description: Metropolitan Statistical Area
+          - name: DMA
+            description: Designated Market Area
+          - name: MARKET
+            description: Market
+          - name: TIER
+            description: Tier
+          - name: MENUBOARD_SIZE
+            description: Menuboard size
+          - name: TEXT_PROGRAM
+            description: Text program
+          - name: TRADITIONAL_MENUBOARD_SETUP
+            description: Traditional menuboard setup
+          - name: MALL_LOCATION_
+            description: Mall location
+          - name: FRANCHISE_LOCATION
+            description: Franchise location
+          - name: FOUNTAIN_REMOVAL_BOTTLES_ONLY
+            description: Fountain removal bottles only
+          - name: BEER___WINE
+            description: Do they serve beer and/or wine
+          - name: ONLINE_ORDERING
+            description: Online ordering
+          - name: DOOR_DASH_
+            description: Door dash
+          - name: FRESH_BREAD_DISTRIBUTOR
+            description: Fresh bread distributor

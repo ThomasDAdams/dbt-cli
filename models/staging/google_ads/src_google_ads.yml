@@ -1,0 +1,44 @@
+version: 2
+
+sources:
+  - name: raw-google-ads
+    database: engage-media-raw
+    schema: GoogleAds
+    description: A replica of our google ads data
+    # Add tags to this source
+    tags:
+      - core
+      - google_ads
+      - external
+    tables:
+      # CampaignStats engage manager account table
+      - name: p_CampaignStats_2646285303
+        description: This table is provided via Google Ads for our campaign level stats
+
+      # Campaign engage manager account table
+      - name: p_Campaign_2646285303
+        description: This table is provided via Google Ads for our campaigns
+
+      # Ad engage manager account table
+      - name: p_Ad_2646285303
+        description: This table is provided via Google Ads for our ads
+
+      # Ad basic stats engage manager account table
+      - name: p_AdBasicStats_2646285303
+        description: This table is provided via Google Ads for our ad basic stats
+
+      # Campaign conversion stats engage manager account table
+      - name: p_CampaignConversionStats_2646285303
+        description: This table is provided via Google Ads for our campaign conversion stats
+
+      # Ad group stats engage manager account table
+      - name: p_AdGroupStats_2646285303
+        description: This table is provided via Google Ads for our ad group stats
+
+      # Ad groups engage manager account table
+      - name: p_AdGroup_2646285303
+        description: This table is provided via Google Ads for our ad groups
+
+      # Ad group conversion stats engage manager account table
+      - name: p_AdGroupConversionStats_2646285303
+        description: This table is provided via Google Ads for our ad group conversion stats
