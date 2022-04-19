@@ -48,8 +48,10 @@ with source as (
         ,ValuePerCurrentModelAttributedConversion
         ,extract(ISOWEEK From Date) IsoWeek
         ,Year
+        ,_LATEST_DATE
+        ,_DATA_DATE
     
-    from {{ source('raw-google-ads', 'p_AdGroupStats_2646285303') }}
+    from {{ source('raw-google-ads', 'AdGroupStats_2646285303') }}
 ),
 
 renamed as (

@@ -46,11 +46,13 @@ with source as (
         ,Slot
         ,ValuePerConversion
         ,ValuePerCurrentModelAttributedConversion
-        ,extract(ISOWEEK From Date) Week
+        ,extract(ISOWEEK From Date) IsoWeek
         ,Year
+        ,_LATEST_DATE
+        ,_DATA_DATE
 
     
-    from {{ source('raw-google-ads', 'p_CampaignStats_2646285303') }}
+    from {{ source('raw-google-ads', 'CampaignStats_2646285303') }}
 ),
 
 renamed as (
